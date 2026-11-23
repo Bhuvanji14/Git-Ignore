@@ -1,0 +1,1504 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Study Partner | Smart Learning Dashboard</title>
+
+    <meta name="description"
+        content="Private study partner dashboard with live timers, SSC CGL timetable and study reports.">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- ================================
+         LOGIN PAGE
+    ================================= -->
+
+    <div id="loginPage" class="login-container">
+
+        <div class="login-box">
+
+            <div class="logo">
+                <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+
+            <h1>Study Partner</h1>
+
+            <p>Study together. Grow together.</p>
+
+            <form id="loginForm">
+
+                <div class="login-input">
+                    <i class="fa-solid fa-user"></i>
+
+                    <input
+                        type="text"
+                        id="username"
+                        placeholder="Enter username"
+                        autocomplete="username"
+                        required>
+                </div>
+
+                <div class="login-input">
+                    <i class="fa-solid fa-lock"></i>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Enter password"
+                        autocomplete="current-password"
+                        required>
+                </div>
+
+                <button type="submit">
+                    Login to Dashboard
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+            </form>
+
+            <p id="loginError" class="error"></p>
+
+            <div class="login-footer">
+                <i class="fa-solid fa-shield-halved"></i>
+                Private Study Space
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================
+         MAIN DASHBOARD
+    ================================= -->
+
+    <div id="dashboard" class="hidden">
+
+        <!-- HEADER -->
+
+        <header class="main-header">
+
+            <div class="brand">
+
+                <div class="brand-icon">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+
+                <div>
+                    <strong>Study Partner</strong>
+                    <small>Personal Learning Space</small>
+                </div>
+
+            </div>
+
+            <div class="header-right">
+
+                <div class="user-info">
+
+                    <div class="user-avatar">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+
+                    <span id="studentName">Student</span>
+
+                </div>
+
+                <button id="logoutBtn" class="logout-button">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    Logout
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- MAIN LAYOUT -->
+
+        <main class="main-layout">
+
+            <!-- SIDEBAR -->
+
+            <aside class="sidebar">
+
+                <div class="sidebar-label">
+                    MAIN MENU
+                </div>
+
+                <nav class="main-navigation">
+
+                    <button data-page="home" class="nav active">
+                        <i class="fa-solid fa-house"></i>
+                        <span>Overview</span>
+                    </button>
+
+                    <button data-page="timetable" class="nav">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        <span>Weekly Timetable</span>
+                    </button>
+
+                    <button data-page="modules" class="nav">
+                        <i class="fa-solid fa-book-open"></i>
+                        <span>Study Modules</span>
+                    </button>
+
+                    <button data-page="reports" class="nav">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <span>Study Reports</span>
+                    </button>
+
+                </nav>
+
+                <div class="sidebar-divider"></div>
+
+                <div class="sidebar-label">
+                    STUDY GOALS
+                </div>
+
+                <div class="sidebar-goal">
+
+                    <div class="goal-icon">
+                        <i class="fa-solid fa-bullseye"></i>
+                    </div>
+
+                    <strong>Stay Consistent</strong>
+
+                    <p>
+                        Small daily efforts create
+                        great results.
+                    </p>
+
+                </div>
+
+                <div class="sidebar-footer">
+                    <i class="fa-solid fa-lock"></i>
+                    Private Workspace
+                </div>
+
+            </aside>
+
+
+            <!-- PAGE CONTENT -->
+
+            <div class="content-area">
+
+
+                <!-- ================================
+                     OVERVIEW PAGE
+                ================================= -->
+
+                <section id="home" class="page">
+
+                    <div class="welcome-section">
+
+                        <div>
+
+                            <span class="section-eyebrow">
+                                YOUR LEARNING DASHBOARD
+                            </span>
+
+                            <h1>Welcome back!</h1>
+
+                            <p class="subtitle">
+                                Make today productive. One session at a time.
+                            </p>
+
+                        </div>
+
+                        <div class="welcome-icon">
+                            <i class="fa-solid fa-book-open-reader"></i>
+                        </div>
+
+                    </div>
+
+
+                    <!-- STATISTICS -->
+
+                    <div class="stats">
+
+                        <div class="card dashboard-stat">
+
+                            <div class="stat-icon blue">
+                                <i class="fa-solid fa-clock"></i>
+                            </div>
+
+                            <h3>My Study Time</h3>
+
+                            <h2 id="myTime">00:00:00</h2>
+
+                            <p>Today's total</p>
+
+                        </div>
+
+
+                        <div class="card dashboard-stat">
+
+                            <div class="stat-icon purple">
+                                <i class="fa-solid fa-user-group"></i>
+                            </div>
+
+                            <h3>Partner Study Time</h3>
+
+                            <h2 id="partnerTime">00:00:00</h2>
+
+                            <p id="partnerStatus">
+                                Offline or not studying
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- FOCUS TIMER -->
+
+                    <div class="timer-card">
+
+                        <div class="timer-heading">
+
+                            <div>
+
+                                <span class="section-eyebrow">
+                                    FOCUS SESSION
+                                </span>
+
+                                <h2>My Focus Timer</h2>
+
+                            </div>
+
+                            <div class="timer-icon">
+                                <i class="fa-solid fa-stopwatch"></i>
+                            </div>
+
+                        </div>
+
+                        <div id="timer" class="main-timer">
+                            00:00:00
+                        </div>
+
+                        <p id="currentSubject">
+                            No active subject
+                        </p>
+
+                        <div id="timerButtons">
+
+                            <button id="chooseModule" class="primary-btn">
+                                <i class="fa-solid fa-play"></i>
+                                Start Studying
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PARTNER ACTIVITY -->
+
+                    <div class="card partner-card">
+
+                        <div class="partner-heading">
+
+                            <div>
+
+                                <span class="section-eyebrow">
+                                    STUDY TOGETHER
+                                </span>
+
+                                <h2>Study Partner Activity</h2>
+
+                            </div>
+
+                            <div class="partner-icon">
+                                <i class="fa-solid fa-users"></i>
+                            </div>
+
+                        </div>
+
+                        <h3 id="partnerName">
+                            Waiting for partner
+                        </h3>
+
+                        <p id="partnerActivity">
+                            No active study session
+                        </p>
+
+                        <div id="partnerLiveTimer">
+                            00:00:00
+                        </div>
+
+                        <div class="progress">
+                            <div id="partnerProgress"></div>
+                        </div>
+
+                    </div>
+
+
+                    <!-- QUICK ACCESS -->
+
+                    <div class="quick-section">
+
+                        <h2>Quick Access</h2>
+
+                        <div class="quick-grid">
+
+                            <button class="quick-card" data-page="timetable">
+
+                                <i class="fa-solid fa-calendar-check"></i>
+
+                                <strong>Weekly Timetable</strong>
+
+                                <small>Manage your schedule</small>
+
+                            </button>
+
+                            <button class="quick-card" data-page="modules">
+
+                                <i class="fa-solid fa-book"></i>
+
+                                <strong>Study Modules</strong>
+
+                                <small>Explore study topics</small>
+
+                            </button>
+
+                            <button class="quick-card" data-page="reports">
+
+                                <i class="fa-solid fa-chart-column"></i>
+
+                                <strong>Study Reports</strong>
+
+                                <small>Review your progress</small>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ================================
+                     SSC CGL TIMETABLE
+                ================================= -->
+
+                <section id="timetable" class="page hidden">
+
+                    <div class="timetable-header">
+
+                        <div>
+
+                            <span class="planner-tag">
+                                SMART STUDY PLANNER
+                            </span>
+
+                            <h1>SSC CGL Weekly Timetable</h1>
+
+                            <p class="subtitle">
+                                Plan your week, complete your targets
+                                and track your progress.
+                            </p>
+
+                        </div>
+
+                        <div class="planner-actions">
+
+                            <button id="resetTimetable" class="secondary-btn">
+                                <i class="fa-solid fa-rotate-left"></i>
+                                Reset Schedule
+                            </button>
+
+                            <button id="addTimetableTask" class="primary-btn">
+                                <i class="fa-solid fa-plus"></i>
+                                Add Session
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- TIMETABLE SUMMARY -->
+
+                    <div class="planner-summary">
+
+                        <div class="planner-stat">
+                            <span>Weekly Study Hours</span>
+                            <strong>30 hrs</strong>
+                        </div>
+
+                        <div class="planner-stat">
+                            <span>Study Days</span>
+                            <strong>5 Days</strong>
+                        </div>
+
+                        <div class="planner-stat">
+                            <span>Daily Study Window</span>
+                            <strong>12 PM – 8 PM</strong>
+                        </div>
+
+                        <div class="planner-stat">
+                            <span>Daily Break</span>
+                            <strong>2 Hours</strong>
+                        </div>
+
+                    </div>
+
+
+                    <!-- WEEKLY SCHEDULE -->
+
+                    <div class="timetable-card">
+
+                        <div class="calendar-heading">
+
+                            <div>
+                                <h2>Weekly Schedule</h2>
+                                <p>Monday to Friday · Local time</p>
+                            </div>
+
+                            <span class="calendar-status">
+                                <span></span>
+                                Your weekly plan
+                            </span>
+
+                        </div>
+
+                        <div class="timetable-scroll">
+
+                            <table class="weekly-timetable" id="weeklyTimetable">
+
+                                <thead>
+
+                                    <tr>
+
+                                        <th class="day-heading">DAY</th>
+
+                                        <th>12:00 – 1:00 PM</th>
+
+                                        <th>1:00 – 2:00 PM</th>
+
+                                        <th>2:00 – 3:00 PM</th>
+
+                                        <th>3:00 – 4:30 PM</th>
+
+                                        <th class="break-heading">
+                                            4:30 – 6:30 PM
+                                        </th>
+
+                                        <th>6:30 – 7:15 PM</th>
+
+                                        <th>7:15 – 8:00 PM</th>
+
+                                    </tr>
+
+                                </thead>
+
+                                <tbody id="timetableBody"></tbody>
+
+                            </table>
+
+                        </div>
+
+
+                        <!-- COLOUR LEGEND -->
+
+                        <div class="timetable-legend">
+
+                            <span>
+                                <i class="legend maths"></i>
+                                Mathematics
+                            </span>
+
+                            <span>
+                                <i class="legend english"></i>
+                                English
+                            </span>
+
+                            <span>
+                                <i class="legend reasoning"></i>
+                                Reasoning
+                            </span>
+
+                            <span>
+                                <i class="legend awareness"></i>
+                                General Awareness
+                            </span>
+
+                            <span>
+                                <i class="legend practice"></i>
+                                Practice / Tests
+                            </span>
+
+                            <span>
+                                <i class="legend revision"></i>
+                                Revision
+                            </span>
+
+                            <span>
+                                <i class="legend break"></i>
+                                Break
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- SUBJECT LIBRARY -->
+
+                    <div class="subject-library">
+
+                        <div class="library-heading">
+
+                            <h2>SSC CGL Subject Library</h2>
+
+                            <p>
+                                Explore the important subjects
+                                and topics of your examination.
+                            </p>
+
+                        </div>
+
+
+                        <div class="subject-library-grid">
+
+                            <div class="subject-library-card maths-library">
+
+                                <div class="library-icon">
+                                    <i class="fa-solid fa-calculator"></i>
+                                </div>
+
+                                <h3>Quantitative Aptitude</h3>
+
+                                <p>
+                                    Arithmetic, Algebra, Geometry,
+                                    Mensuration, Trigonometry,
+                                    Number System and Data Interpretation.
+                                </p>
+
+                                <button onclick="showSSCTopics('maths')">
+                                    Explore Topics →
+                                </button>
+
+                            </div>
+
+
+                            <div class="subject-library-card english-library">
+
+                                <div class="library-icon">
+                                    <i class="fa-solid fa-language"></i>
+                                </div>
+
+                                <h3>English Language</h3>
+
+                                <p>
+                                    Grammar, Vocabulary, Comprehension,
+                                    Cloze Test, Error Detection and
+                                    Sentence Improvement.
+                                </p>
+
+                                <button onclick="showSSCTopics('english')">
+                                    Explore Topics →
+                                </button>
+
+                            </div>
+
+
+                            <div class="subject-library-card reasoning-library">
+
+                                <div class="library-icon">
+                                    <i class="fa-solid fa-brain"></i>
+                                </div>
+
+                                <h3>General Intelligence & Reasoning</h3>
+
+                                <p>
+                                    Analogy, Series, Coding-Decoding,
+                                    Puzzles, Syllogism and
+                                    Non-Verbal Reasoning.
+                                </p>
+
+                                <button onclick="showSSCTopics('reasoning')">
+                                    Explore Topics →
+                                </button>
+
+                            </div>
+
+
+                            <div class="subject-library-card awareness-library">
+
+                                <div class="library-icon">
+                                    <i class="fa-solid fa-globe"></i>
+                                </div>
+
+                                <h3>General Awareness</h3>
+
+                                <p>
+                                    History, Geography, Polity,
+                                    Economics, General Science
+                                    and Current Affairs.
+                                </p>
+
+                                <button onclick="showSSCTopics('awareness')">
+                                    Explore Topics →
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <div id="sscTopicDetails" class="topic-details hidden"></div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ================================
+                     STUDY MODULES
+                ================================= -->
+
+                <section id="modules" class="page hidden">
+
+                    <div class="page-heading">
+
+                        <span class="section-eyebrow">
+                            LEARNING RESOURCES
+                        </span>
+
+                        <h1>Study Modules</h1>
+
+                        <p class="subtitle">
+                            Select a subject and start your learning session.
+                        </p>
+
+                    </div>
+
+                    <div id="moduleContainer" class="modules-grid"></div>
+
+<!-- COMPLETE STUDY MATERIAL SECTION -->
+<section class="study-material">
+
+    <div class="material-heading">
+        <span>YOUR LEARNING LIBRARY</span>
+        <h2>Study Material & Notes</h2>
+        <p>Learn concepts from basic to advanced level.</p>
+    </div>
+
+    <div class="material-search">
+        <i class="fa-solid fa-search"></i>
+        <input type="text" id="studySearch"
+        placeholder="Search any topic...">
+    </div>
+
+    <div class="material-filters">
+        <button class="filter-btn active" onclick="filterStudy('all',this)">All</button>
+        <button class="filter-btn" onclick="filterStudy('maths',this)">Mathematics</button>
+        <button class="filter-btn" onclick="filterStudy('english',this)">English</button>
+        <button class="filter-btn" onclick="filterStudy('reasoning',this)">Reasoning</button>
+        <button class="filter-btn" onclick="filterStudy('gk',this)">General Awareness</button>
+    </div>
+
+    <div class="study-subjects">
+
+        <!-- MATHEMATICS -->
+        <div class="study-card" data-subject="maths">
+            <h3><i class="fa-solid fa-calculator"></i> Quantitative Aptitude</h3>
+            <p>Mathematical concepts, formulas and solved examples.</p>
+
+            <details open>
+                <summary>1. Number System</summary>
+                <div class="notes">
+                    <h4>Introduction</h4>
+                    <p>A number system is a method of representing numbers. It includes natural, whole, integer, rational, irrational and real numbers.</p>
+
+                    <h4>Types of Numbers</h4>
+                    <ul>
+                        <li>Natural: 1, 2, 3, 4...</li>
+                        <li>Whole: 0, 1, 2, 3...</li>
+                        <li>Integers: -3, -2, -1, 0, 1...</li>
+                        <li>Prime: Numbers having exactly two factors.</li>
+                        <li>Composite: Numbers having more than two factors.</li>
+                    </ul>
+
+                    <h4>Divisibility Rules</h4>
+                    <ul>
+                        <li>2: Last digit must be even.</li>
+                        <li>3: Sum of digits divisible by 3.</li>
+                        <li>5: Last digit 0 or 5.</li>
+                        <li>9: Sum of digits divisible by 9.</li>
+                        <li>10: Last digit must be 0.</li>
+                        <li>11: Difference of alternate digit sums is divisible by 11.</li>
+                    </ul>
+
+                    <h4>Solved Example</h4>
+                    <p>Is 456 divisible by 3?</p>
+                    <p>4 + 5 + 6 = 15. Since 15 is divisible by 3, 456 is divisible by 3.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>2. Percentage</summary>
+                <div class="notes">
+                    <h4>Definition</h4>
+                    <p>Percentage means a value expressed out of 100.</p>
+                    <div class="formula">Percentage = (Value / Total) × 100</div>
+                    <div class="formula">x% of y = (x × y) / 100</div>
+                    <h4>Important Conversions</h4>
+                    <ul>
+                        <li>1/2 = 50%</li>
+                        <li>1/3 = 33.33%</li>
+                        <li>1/4 = 25%</li>
+                        <li>1/5 = 20%</li>
+                        <li>1/8 = 12.5%</li>
+                        <li>3/4 = 75%</li>
+                    </ul>
+                    <h4>Example</h4>
+                    <p>Find 25% of 800.</p>
+                    <p>800 × 25 / 100 = 200.</p>
+                    <h4>Successive Percentage Change</h4>
+                    <div class="formula">Net change = a + b + ab/100</div>
+                    <p>Use negative values for decreases.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>3. Profit, Loss and Discount</summary>
+                <div class="notes">
+                    <p><b>Cost Price (CP):</b> Purchase price.</p>
+                    <p><b>Selling Price (SP):</b> Selling price of an article.</p>
+                    <div class="formula">Profit = SP - CP</div>
+                    <div class="formula">Loss = CP - SP</div>
+                    <div class="formula">Profit % = Profit / CP × 100</div>
+                    <div class="formula">Loss % = Loss / CP × 100</div>
+                    <div class="formula">Discount = Marked Price - Selling Price</div>
+                    <h4>Solved Example</h4>
+                    <p>CP = ₹500 and SP = ₹600.</p>
+                    <p>Profit = 600 - 500 = ₹100.</p>
+                    <p>Profit percentage = 100/500 × 100 = 20%.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>4. Simple and Compound Interest</summary>
+                <div class="notes">
+                    <h4>Simple Interest</h4>
+                    <div class="formula">SI = (P × R × T) / 100</div>
+                    <p>P = Principal, R = Rate, T = Time.</p>
+                    <h4>Compound Interest</h4>
+                    <div class="formula">Amount = P(1 + R/100)<sup>T</sup></div>
+                    <div class="formula">CI = Amount - Principal</div>
+                    <h4>Example</h4>
+                    <p>Principal = ₹1,000, Rate = 10%, Time = 2 years.</p>
+                    <p>SI = 1000 × 10 × 2 / 100 = ₹200.</p>
+                    <p>Annual compound interest = ₹210.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>5. Ratio and Proportion</summary>
+                <div class="notes">
+                    <p>Ratio compares two quantities of the same kind.</p>
+                    <div class="formula">a : b = a / b</div>
+                    <p>If a:b = c:d, then ad = bc.</p>
+                    <h4>Example</h4>
+                    <p>Divide ₹600 in the ratio 2:3.</p>
+                    <p>Total parts = 5.</p>
+                    <p>First share = 600 × 2/5 = ₹240.</p>
+                    <p>Second share = 600 × 3/5 = ₹360.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>6. Time and Work</summary>
+                <div class="notes">
+                    <div class="formula">One day's work = 1 / Total days</div>
+                    <p>If A completes work in 10 days, A's one-day work is 1/10.</p>
+                    <p>If B completes it in 15 days, B's one-day work is 1/15.</p>
+                    <p>Combined work = 1/10 + 1/15 = 1/6.</p>
+                    <p>Therefore, both complete the work in 6 days.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>7. Time, Speed and Distance</summary>
+                <div class="notes">
+                    <div class="formula">Speed = Distance / Time</div>
+                    <div class="formula">Distance = Speed × Time</div>
+                    <div class="formula">Time = Distance / Speed</div>
+                    <p>km/h to m/s: multiply by 5/18.</p>
+                    <p>m/s to km/h: multiply by 18/5.</p>
+                    <h4>Example</h4>
+                    <p>A car covers 120 km in 2 hours.</p>
+                    <p>Speed = 120/2 = 60 km/h.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>8. Algebra, Geometry and Mensuration</summary>
+                <div class="notes">
+                    <h4>Algebra Identities</h4>
+                    <div class="formula">(a+b)² = a² + 2ab + b²</div>
+                    <div class="formula">(a-b)² = a² - 2ab + b²</div>
+                    <div class="formula">a²-b² = (a-b)(a+b)</div>
+                    <h4>Geometry</h4>
+                    <p>Triangle angle sum = 180°.</p>
+                    <p>Area of triangle = 1/2 × base × height.</p>
+                    <p>Circle area = πr².</p>
+                    <p>Circle circumference = 2πr.</p>
+                    <h4>Mensuration</h4>
+                    <p>Cube volume = a³.</p>
+                    <p>Cuboid volume = l × b × h.</p>
+                    <p>Cylinder volume = πr²h.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>9. Trigonometry</summary>
+                <div class="notes">
+                    <div class="formula">sin θ = Perpendicular / Hypotenuse</div>
+                    <div class="formula">cos θ = Base / Hypotenuse</div>
+                    <div class="formula">tan θ = Perpendicular / Base</div>
+                    <p>Important identity:</p>
+                    <div class="formula">sin²θ + cos²θ = 1</div>
+                    <div class="formula">tan θ = sin θ / cos θ</div>
+                </div>
+            </details>
+        </div>
+
+        <!-- ENGLISH -->
+        <div class="study-card" data-subject="english">
+            <h3><i class="fa-solid fa-language"></i> English Language</h3>
+            <p>Grammar, vocabulary and comprehension.</p>
+
+            <details open>
+                <summary>1. Parts of Speech</summary>
+                <div class="notes">
+                    <ul>
+                        <li>Noun: Name of a person, place or thing.</li>
+                        <li>Pronoun: Used instead of a noun.</li>
+                        <li>Verb: Shows action or state.</li>
+                        <li>Adjective: Describes a noun.</li>
+                        <li>Adverb: Modifies a verb or adjective.</li>
+                        <li>Preposition: Shows relationship.</li>
+                        <li>Conjunction: Joins words or sentences.</li>
+                        <li>Interjection: Expresses sudden emotion.</li>
+                    </ul>
+                    <h4>Example</h4>
+                    <p>She quickly completed her difficult work.</p>
+                    <p>She = Pronoun; quickly = Adverb; completed = Verb; difficult = Adjective.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>2. Tenses</summary>
+                <div class="notes">
+                    <p>There are three main tenses: Present, Past and Future.</p>
+                    <h4>Present Tense</h4>
+                    <p>Simple: I play.</p>
+                    <p>Continuous: I am playing.</p>
+                    <p>Perfect: I have played.</p>
+                    <p>Perfect Continuous: I have been playing.</p>
+                    <h4>Past Tense</h4>
+                    <p>Simple: I played.</p>
+                    <p>Continuous: I was playing.</p>
+                    <p>Perfect: I had played.</p>
+                    <p>Perfect Continuous: I had been playing.</p>
+                    <h4>Future Tense</h4>
+                    <p>Simple: I will play.</p>
+                    <p>Continuous: I will be playing.</p>
+                    <p>Perfect: I will have played.</p>
+                    <p>Perfect Continuous: I will have been playing.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>3. Articles</summary>
+                <div class="notes">
+                    <p>There are three articles: A, An and The.</p>
+                    <p>A is used before a consonant sound: a book, a university.</p>
+                    <p>An is used before a vowel sound: an apple, an hour.</p>
+                    <p>The is used for a particular or specific noun.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>4. Subject Verb Agreement</summary>
+                <div class="notes">
+                    <p>A singular subject generally takes a singular verb.</p>
+                    <p>A plural subject generally takes a plural verb.</p>
+                    <p>Incorrect: He go to school.</p>
+                    <p>Correct: He goes to school.</p>
+                    <p>Each, every, everyone and somebody generally take singular verbs.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>5. Active and Passive Voice</summary>
+                <div class="notes">
+                    <p>Active voice: Subject performs the action.</p>
+                    <p>Passive voice: Subject receives the action.</p>
+                    <p>Active: Ram writes a letter.</p>
+                    <p>Passive: A letter is written by Ram.</p>
+                    <p>Basic passive structure: Object + be verb + V3 + by + subject.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>6. Direct and Indirect Speech</summary>
+                <div class="notes">
+                    <p>Direct speech reports the exact words.</p>
+                    <p>Indirect speech reports the meaning of the statement.</p>
+                    <p>Direct: He said, "I am happy."</p>
+                    <p>Indirect: He said that he was happy.</p>
+                    <p>Pronouns, tense and time expressions may change according to context.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>7. Vocabulary and Idioms</summary>
+                <div class="notes">
+                    <p>Synonym: A word with a similar meaning.</p>
+                    <p>Antonym: A word with an opposite meaning.</p>
+                    <p>Brief = Short.</p>
+                    <p>Expand = Contract (antonyms).</p>
+                    <h4>Important Idioms</h4>
+                    <ul>
+                        <li>Once in a blue moon: Very rarely.</li>
+                        <li>Break the ice: Start a conversation.</li>
+                        <li>A piece of cake: Something very easy.</li>
+                        <li>Spill the beans: Reveal a secret.</li>
+                        <li>Hit the nail on the head: Say exactly the right thing.</li>
+                    </ul>
+                </div>
+            </details>
+
+            <details>
+                <summary>8. Reading Comprehension and Cloze Test</summary>
+                <div class="notes">
+                    <p>Read the passage carefully and identify its central idea.</p>
+                    <p>For comprehension, answer using the information provided in the passage.</p>
+                    <p>For cloze tests, check grammar, context, vocabulary and sentence meaning before choosing an answer.</p>
+                </div>
+            </details>
+        </div>
+
+        <!-- REASONING -->
+        <div class="study-card" data-subject="reasoning">
+            <h3><i class="fa-solid fa-brain"></i> General Intelligence & Reasoning</h3>
+            <p>Logical thinking and problem-solving concepts.</p>
+
+            <details open>
+                <summary>1. Analogy</summary>
+                <div class="notes">
+                    <p>Analogy means identifying a similar relationship between two pairs.</p>
+                    <p>Example: Bird : Fly :: Fish : Swim.</p>
+                    <p>Relationship: Animal and its movement.</p>
+                    <p>Common patterns include function, category, opposite, part-whole and degree.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>2. Number Series</summary>
+                <div class="notes">
+                    <p>Find the mathematical pattern in a sequence.</p>
+                    <p>Example: 2, 4, 6, 8, 10, ?</p>
+                    <p>Every number increases by 2.</p>
+                    <p>Answer = 12.</p>
+                    <p>Check differences, multiplication, division, squares and alternating patterns.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>3. Coding and Decoding</summary>
+                <div class="notes">
+                    <p>Letters or numbers are transformed according to a particular rule.</p>
+                    <p>Example: CAT → DBU.</p>
+                    <p>C becomes D, A becomes B, T becomes U.</p>
+                    <p>Therefore DOG → EPH.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>4. Blood Relations</summary>
+                <div class="notes">
+                    <p>Questions based on family relationships.</p>
+                    <ul>
+                        <li>Father's father = Grandfather.</li>
+                        <li>Mother's mother = Grandmother.</li>
+                        <li>Father's brother = Uncle.</li>
+                        <li>Mother's sister = Aunt.</li>
+                        <li>Brother's son = Nephew.</li>
+                        <li>Sister's daughter = Niece.</li>
+                    </ul>
+                    <p>Draw a family tree to solve complicated questions.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>5. Direction Sense</summary>
+                <div class="notes">
+                    <p>Four main directions are North, South, East and West.</p>
+                    <p>North is opposite South. East is opposite West.</p>
+                    <p>Draw a direction diagram and trace every movement.</p>
+                    <div class="formula">Distance = √(Horizontal² + Vertical²)</div>
+                </div>
+            </details>
+
+            <details>
+                <summary>6. Syllogism</summary>
+                <div class="notes">
+                    <p>Syllogism uses statements to determine logically valid conclusions.</p>
+                    <p>Common statements:</p>
+                    <ul>
+                        <li>All A are B.</li>
+                        <li>No A is B.</li>
+                        <li>Some A are B.</li>
+                        <li>Some A are not B.</li>
+                    </ul>
+                    <p>Use Venn diagrams to check whether a conclusion necessarily follows.</p>
+                    <p>Remember: All A are B does not mean all B are A.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>7. Ranking and Seating Arrangement</summary>
+                <div class="notes">
+                    <div class="formula">Total = Left Rank + Right Rank - 1</div>
+                    <p>Example: A person is 5th from left and 7th from right.</p>
+                    <p>Total persons = 5 + 7 - 1 = 11.</p>
+                    <p>For seating arrangement, draw positions and apply each clue one by one.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>8. Non-Verbal Reasoning</summary>
+                <div class="notes">
+                    <p>Important topics:</p>
+                    <ul>
+                        <li>Mirror images.</li>
+                        <li>Water images.</li>
+                        <li>Paper folding and cutting.</li>
+                        <li>Embedded figures.</li>
+                        <li>Figure completion.</li>
+                        <li>Pattern completion.</li>
+                        <li>Rotation of figures.</li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+
+        <!-- GENERAL AWARENESS -->
+        <div class="study-card" data-subject="gk">
+            <h3><i class="fa-solid fa-globe"></i> General Awareness</h3>
+            <p>History, Geography, Polity, Economy and General Science.</p>
+
+            <details open>
+                <summary>1. Indian History</summary>
+                <div class="notes">
+                    <h4>Ancient History</h4>
+                    <ul>
+                        <li>Indus Valley Civilisation.</li>
+                        <li>Vedic Period.</li>
+                        <li>Mahajanapadas.</li>
+                        <li>Buddhism and Jainism.</li>
+                        <li>Maurya Empire.</li>
+                        <li>Gupta Empire.</li>
+                    </ul>
+                    <h4>Medieval History</h4>
+                    <ul>
+                        <li>Delhi Sultanate.</li>
+                        <li>Mughal Empire.</li>
+                        <li>Bhakti Movement.</li>
+                        <li>Sufi Movement.</li>
+                    </ul>
+                    <h4>Modern History</h4>
+                    <ul>
+                        <li>Revolt of 1857.</li>
+                        <li>Formation of Indian National Congress (1885).</li>
+                        <li>Non-Cooperation Movement.</li>
+                        <li>Civil Disobedience Movement.</li>
+                        <li>Quit India Movement (1942).</li>
+                        <li>Indian Independence (1947).</li>
+                    </ul>
+                </div>
+            </details>
+
+            <details>
+                <summary>2. Indian Geography</summary>
+                <div class="notes">
+                    <p>Important topics:</p>
+                    <ul>
+                        <li>Physical divisions of India.</li>
+                        <li>Himalayan mountain system.</li>
+                        <li>Northern Plains.</li>
+                        <li>Peninsular Plateau.</li>
+                        <li>Indian rivers and tributaries.</li>
+                        <li>Climate and monsoon.</li>
+                        <li>Soils and agriculture.</li>
+                        <li>Minerals and industries.</li>
+                        <li>National parks and wildlife sanctuaries.</li>
+                        <li>States and capitals.</li>
+                    </ul>
+                </div>
+            </details>
+
+            <details>
+                <summary>3. Indian Constitution and Polity</summary>
+                <div class="notes">
+                    <p>The Constitution of India came into effect on 26 January 1950.</p>
+                    <h4>Important Topics</h4>
+                    <ul>
+                        <li>Preamble.</li>
+                        <li>Fundamental Rights.</li>
+                        <li>Directive Principles of State Policy.</li>
+                        <li>Fundamental Duties.</li>
+                        <li>President and Vice-President.</li>
+                        <li>Prime Minister and Council of Ministers.</li>
+                        <li>Parliament.</li>
+                        <li>Supreme Court and High Courts.</li>
+                        <li>Constitutional amendments.</li>
+                        <li>Election Commission.</li>
+                        <li>Local Self Government.</li>
+                    </ul>
+                </div>
+            </details>
+
+            <details>
+                <summary>4. Indian Economy</summary>
+                <div class="notes">
+                    <p>Economics studies production, distribution and consumption of goods and services.</p>
+                    <ul>
+                        <li>GDP: Gross Domestic Product.</li>
+                        <li>Inflation: General rise in prices.</li>
+                        <li>Unemployment: People willing and able to work but unable to find work.</li>
+                        <li>Fiscal Policy: Government taxation and spending.</li>
+                        <li>Monetary Policy: Central bank measures affecting money and credit.</li>
+                        <li>RBI: Reserve Bank of India.</li>
+                        <li>Budget, banking, taxation and poverty.</li>
+                    </ul>
+                </div>
+            </details>
+
+            <details>
+                <summary>5. Physics</summary>
+                <div class="notes">
+                    <p>Important areas include motion, force, work, energy, power, gravitation, heat, sound, light and electricity.</p>
+                    <div class="formula">Speed = Distance / Time</div>
+                    <div class="formula">Force = Mass × Acceleration</div>
+                    <div class="formula">Work = Force × Displacement</div>
+                    <div class="formula">Power = Work / Time</div>
+                    <div class="formula">V = IR</div>
+                    <p>Study SI units and everyday applications of physical laws.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>6. Chemistry</summary>
+                <div class="notes">
+                    <p>Important topics:</p>
+                    <ul>
+                        <li>Atoms and molecules.</li>
+                        <li>Elements and compounds.</li>
+                        <li>Periodic table.</li>
+                        <li>Acids, bases and salts.</li>
+                        <li>Metals and non-metals.</li>
+                        <li>Chemical reactions.</li>
+                        <li>Oxidation and reduction.</li>
+                        <li>Carbon compounds.</li>
+                    </ul>
+                    <p>pH below 7 is acidic, 7 is neutral and above 7 is basic at standard reference conditions.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>7. Biology</summary>
+                <div class="notes">
+                    <p>Important topics:</p>
+                    <ul>
+                        <li>Cell structure and functions.</li>
+                        <li>Human digestive system.</li>
+                        <li>Respiratory system.</li>
+                        <li>Circulatory system.</li>
+                        <li>Nervous system.</li>
+                        <li>Endocrine system.</li>
+                        <li>Nutrition and vitamins.</li>
+                        <li>Diseases and immunity.</li>
+                        <li>Genetics and reproduction.</li>
+                        <li>Environment and ecology.</li>
+                    </ul>
+                </div>
+            </details>
+
+            <details>
+                <summary>8. Current Affairs</summary>
+                <div class="notes">
+                    <p>Prepare monthly notes covering:</p>
+                    <ul>
+                        <li>National and international news.</li>
+                        <li>Government schemes.</li>
+                        <li>Important appointments.</li>
+                        <li>Sports events and awards.</li>
+                        <li>Books and authors.</li>
+                        <li>Important days.</li>
+                        <li>Science and technology.</li>
+                        <li>Reports and indexes.</li>
+                    </ul>
+                    <p>Update this section regularly with verified current information.</p>
+                </div>
+            </details>
+        </div>
+
+    </div>
+
+    <div class="material-reminder">
+        <i class="fa-solid fa-lightbulb"></i>
+        <div><b>Study Tip</b><p>Read one topic, understand the examples, practise questions and revise the topic again.</p></div>
+    </div>
+
+</section>
+
+
+                </section>
+
+
+                <!-- ================================
+                     STUDY REPORTS
+                ================================= -->
+
+                <section id="reports" class="page hidden">
+
+                    <div class="page-heading">
+
+                        <span class="section-eyebrow">
+                            PERFORMANCE ANALYTICS
+                        </span>
+
+                        <h1>Study Reports</h1>
+
+                        <p class="subtitle">
+                            Understand your study consistency
+                            and compare your progress.
+                        </p>
+
+                    </div>
+
+
+                    <div class="report-buttons">
+
+                        <button data-period="today">Today</button>
+
+                        <button data-period="week">This Week</button>
+
+                        <button data-period="month">This Month</button>
+
+                    </div>
+
+
+                    <div class="stats">
+
+                        <div class="card">
+
+                            <h3>My Total Study Time</h3>
+
+                            <h2 id="reportMyTime">00:00:00</h2>
+
+                        </div>
+
+                        <div class="card">
+
+                            <h3>Partner Total Study Time</h3>
+
+                            <h2 id="reportPartnerTime">00:00:00</h2>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="card report-card">
+
+                        <h2>Subject-wise Report</h2>
+
+                        <div id="moduleReport"></div>
+
+                    </div>
+
+
+                    <div class="card report-card">
+
+                        <h2>Daily Activity</h2>
+
+                        <div id="dailyReport"></div>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+        </main>
+
+    </div>
+
+
+    <!-- ================================
+         STUDY MODULE POPUP
+    ================================= -->
+
+    <div id="modulePopup" class="popup hidden">
+
+        <div class="popup-box">
+
+            <button id="closePopup" class="close" type="button">
+                ×
+            </button>
+
+            <div class="popup-icon">
+                <i class="fa-solid fa-book-open"></i>
+            </div>
+
+            <h2 id="popupTitle">Choose a subject</h2>
+
+            <label for="topicSelect">Select topic</label>
+
+            <select id="topicSelect"></select>
+
+            <button id="startSession" class="primary-btn">
+                <i class="fa-solid fa-play"></i>
+                Start Timer
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================
+         TIMETABLE EDIT POPUP
+    ================================= -->
+
+    <div id="timetableModal" class="timetable-modal hidden">
+
+        <div class="timetable-modal-box">
+
+            <button type="button" id="closeTimetableModal" class="modal-close">
+                ×
+            </button>
+
+            <h2>Edit Study Session</h2>
+
+            <p>
+                Update the subject, topic and time period.
+            </p>
+
+
+            <label for="editDay">Day</label>
+
+            <select id="editDay">
+                <option>Monday</option>
+                <option>Tuesday</option>
+                <option>Wednesday</option>
+                <option>Thursday</option>
+                <option>Friday</option>
+            </select>
+
+
+            <label for="editSlot">Time Period</label>
+
+            <select id="editSlot">
+
+                <option value="0">12:00 PM – 1:00 PM</option>
+                <option value="1">1:00 PM – 2:00 PM</option>
+                <option value="2">2:00 PM – 3:00 PM</option>
+                <option value="3">3:00 PM – 4:30 PM</option>
+                <option value="5">6:30 PM – 7:15 PM</option>
+                <option value="6">7:15 PM – 8:00 PM</option>
+
+            </select>
+
+
+            <label for="editSubject">Subject</label>
+
+            <select id="editSubject">
+
+                <option>Quantitative Aptitude</option>
+                <option>English Language</option>
+                <option>General Intelligence & Reasoning</option>
+                <option>General Awareness</option>
+                <option>Current Affairs</option>
+                <option>Previous Year Questions</option>
+                <option>Mock Test</option>
+                <option>Revision</option>
+                <option>Practice Test</option>
+                <option>Analysis</option>
+
+            </select>
+
+
+            <label for="editTopic">Topic / Activity</label>
+
+            <input
+                id="editTopic"
+                type="text"
+                placeholder="Example: Algebra, Coding-Decoding">
+
+
+            <div class="modal-actions">
+
+                <button id="deleteTimetableTask" class="delete-btn">
+                    <i class="fa-solid fa-trash"></i>
+                    Delete
+                </button>
+
+                <button id="saveTimetableTask" class="primary-btn">
+                    <i class="fa-solid fa-floppy-disk"></i>
+                    Save Session
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================
+         NOTIFICATION
+    ================================= -->
+
+    <div id="toast" class="toast"></div>
+
+
+    <!-- ================================
+         JAVASCRIPT
+    ================================= -->
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="app.js"></script>
+<a href="cgl.html" class="cgl-link">
+    <i class="fas fa-graduation-cap"></i>
+    <span>SSC CGL Study Partner</span>
+    <i class="fas fa-arrow-right arrow"></i>
+</a>
+</body>
+</html>
